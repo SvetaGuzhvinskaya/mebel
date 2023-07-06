@@ -1,0 +1,234 @@
+.catalog-page {
+  margin-top: -8px;
+  padding-bottom: 70px;
+
+  &__title {
+    margin-bottom: 22px;
+    font-size: 24px;
+    line-height: 31px;
+  }
+  &__grid {
+    @include grid(296px calc(100% - 296px - 32px), auto, normal, 32px)
+  }
+}
+
+.aside {
+  margin-top: -2px;
+}
+
+.filter {
+  margin-bottom: 88px;
+}
+
+.catalog-slider {
+  width: 100%;
+  height: 1324px;
+  margin-bottom: 32px;
+
+  &__item {
+    height: calc((100% - 64px) / 3);
+  }
+}
+
+.catalog-slider-pagination {
+  &.swiper-pagination-bullets {
+    position: relative;
+    bottom: 0;
+  }
+}
+
+.widget {
+  &__title {
+    margin-bottom: 11px;
+    font-family: $font-family-opensans600;
+    font-size: 16px;
+    font-weight: normal;
+    line-height: 20px;
+  }
+
+  &__list {
+    &-item {
+      &:not(:last-child) {
+        margin-bottom: 12px;
+      }
+    }
+  }
+
+  &:not(:last-child) {
+    margin-bottom: 28px;
+  }
+}
+
+@media (max-width: $lg) {
+  .catalog-page {
+    margin-top: -7px;
+
+    &__title {
+      margin-bottom: 15px;
+    }
+
+    &__grid {
+      grid-template-columns: 100%;
+    }
+  }
+
+  .aside {
+    @include grid(77px 1fr, auto, center, 32px);
+
+    &__title {
+      margin-bottom: 0;
+    }
+  }
+
+  .filter {
+    @include grid(repeat(4, 1fr), auto, normal, 32px);
+    margin-bottom: 0;
+  }
+
+  .widget {
+    position: relative;
+
+    &__title {
+      position: relative;
+      margin-bottom: 0;
+      padding: 8px 13px 7px;
+      background-color: $color-grey-f7;
+      border-radius: 10px;
+      font-family: $font-family-opensans400;
+      line-height: 20px;
+      border: 2px solid $color-grey-f7;
+      cursor: pointer;
+      z-index: 10;
+
+      &::after {
+        position: absolute;
+        top: 50%;
+        right: 16px;
+        margin-top: -5px;
+        @include arrow(to bottom, 6px, 6px, 1px, $color-primary);
+        @include transition;
+      }
+
+      &:hover {
+        background-color: $color-grey-ea;
+        border-color: $color-grey-ea;
+      }
+
+      &:focus,
+      &:active,
+      &.is-open {
+        background-color: $color-grey-f8;
+        border-color: $color-primary;
+        z-index: 12;
+
+        &::after {
+          margin-top: -2px;
+          @include arrow(to top, 6px, 6px, 1px, $color-primary);
+        }
+      }
+    }
+
+    &__entry {
+      display: none;
+      position: absolute;
+      top: calc(100% - 16px);
+      left: 0;
+      padding: 41px 20px 24px 29px;
+      width: 100%;
+      background-color: $color-white;
+      border-radius: 10px;
+      border: 1px solid $color-grey-ea;
+      z-index: 5;
+
+      &.is-open {
+        display: block;
+        z-index: 11;
+      }
+    }
+
+    &__list {
+      margin-bottom: 6px;
+
+      &-item {
+        &:not(:last-child) {
+          margin-bottom: 12px;
+        }
+      }
+    }
+
+    &:not(:last-child) {
+      margin-bottom: 0;
+    }
+  }
+}
+
+@media (max-width: $sm) {
+  .catalog-page {
+    margin-top: -8px;
+    padding-bottom: 69px;
+    &__title {
+      margin-bottom: 28px;
+    }
+
+    &__grid {
+      grid-gap: 33px;
+    }
+  }
+
+  .aside {
+    grid-template-columns: 1fr;
+    grid-gap: 15px;
+
+    &__title {
+      margin-bottom: 0;
+    }
+  }
+
+  .filter {
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 17px 32px;
+    max-width: 404px;
+  }
+
+}
+
+@media (max-width: $xs) {
+  .catalog-page {
+    margin-top: 0;
+    padding-bottom: 70px;
+
+    &__title {
+      margin-bottom: 16px;
+    }
+
+    &__grid {
+      grid-gap: 32px;
+    }
+  }
+
+  .aside {
+    margin: 0;
+  }
+
+  .filter {
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 17px;
+  }
+
+  .catalog-slider {
+    height: 1234px;
+    margin-bottom: 32px;
+
+    &__item {
+      height: calc((100% - 32px) / 3);
+    }
+  }
+}
+
+@media (max-width: $xxs) {}
+
+@media (max-width: $xxxs) {
+  .catalog-slider {
+    height: 866px;
+  }
+}

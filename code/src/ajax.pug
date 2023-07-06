@@ -1,0 +1,15 @@
+include pug/mixins/svg
+- var products = [{reting: '4,8', imgSrc: 'images/prod07.jpg', title: 'Диван шиниловый', serial: '“V-43”', price: '19 990 руб', hidden: 'visib-md'}, {reting: '4,7', imgSrc: 'images/prod08.jpg', title: 'Диван велюровый', serial: '“S-99”', price: '19 990 руб', hidden: 'visib-md'}, {reting: '4,7', imgSrc: 'images/prod09.jpg', title: 'Диван из кожзама', serial: '“F-85”', price: '26 990 руб'}, {reting: '4,6', imgSrc: 'images/prod10.jpg', title: 'Диван флоковый', serial: '“H-64”', price: '25 990 руб'}, {reting: '4,6', imgSrc: 'images/prod11.jpg', title: 'Диван флоковый', serial: '“H-58”', price: '23 990 руб'}, {reting: '4,6', imgSrc: 'images/prod12.jpg', title: 'Диван из кожзама', serial: '“R-43”', price: '33 990 руб'}]
+#load-home-products.section-products__grid
+  each product in products
+    .post-product.post-product--sm(class="" +product.hidden)
+      .reting.post-product__reting
+        +svg("icon-star", "reting-icon")
+        span.reting-txt= product.reting
+      .post-product__img.post-product__img--sm
+        img.post-product__img-img(src="" +product.imgSrc alt="" +product.title)
+      h3.post-product__title.post-product__title--sm= product.title
+        span.post-product__title-serial= product.serial
+      .post-product__price.post-product__price--sm= product.price
+      .post-product__btn
+        a.btn.btn--outline.btn--xs(href="#") Купить

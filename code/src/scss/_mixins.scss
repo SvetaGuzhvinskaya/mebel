@@ -1,0 +1,44 @@
+@mixin arrow($direction, $width, $height, $borderWidth, $color) {
+  display: block;
+  width: $width;
+  height: $height;
+  border: solid transparent;
+  border-width: $borderWidth 0 0 $borderWidth;
+  border-top-color: $color;
+  border-left-color: $color;
+  content: '';
+  @if $direction == (to top) {
+    transform: rotate(45deg);
+  }
+  @if $direction == (to left) {
+    transform: rotate(-45deg);
+  }
+  @if $direction == (to right) {
+    transform: rotate(135deg);
+  }
+  @if $direction == (to bottom) {
+    transform: rotate(-135deg);
+  }
+}
+
+@mixin transition {
+  transition: all .3s ease-out;
+}
+
+@mixin grid($columns, $rows, $align, $gap) {
+  display: grid;
+  grid-template-columns: $columns;
+  grid-template-rows: $rows;
+  grid-gap: $gap;
+  grid-auto-flow: dense;
+  align-items: $align;
+}
+
+@mixin flex($direction, $align, $justify) {
+  display: flex;
+  flex-direction: $direction;
+  align-items: $align;
+  justify-content: $justify;
+}
+
+

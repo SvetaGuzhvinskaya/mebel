@@ -1,0 +1,102 @@
+include mixins/svg
+doctype html
+html(lang="ru")
+  head
+    meta(charset="UTF-8")
+    meta(http-equiv="X-UA-Compatible", content="IE=edge")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title SitDownPls
+    link(rel="shortcut icon" href="images/favicon.ico")
+    link(rel="stylesheet", href="css/style.min.css")
+    link(rel="preload" href="fonts/opensans-bold.woff2" as="font")
+    link(rel="preload" href="fonts/opensans-semibold.woff2" as="font")
+    link(rel="preload" href="fonts/opensans-regular.woff2" as="font")
+    link(rel="preload" href="fonts/playfairdisplay-black.woff2" as="font")
+  body
+    - var secondaryMenu = ['О компании', 'Гарантия и возврат', 'Корпоративным клиентам', 'Дизайн-решение']
+    - var regionList = ['Москва', 'Казань', 'Уфа', 'Пермь']
+    - var mainMenu = ['Каталог', 'Магазины', 'Шоу-рум', 'Доставка и оплата', 'Дисконт', 'Контакты']
+    - var categories = [{option: 'Категория', value: true}, {option: 'Диваны', value: false}, {option: 'Комоды', value: false}, {option: 'Кресла', value: false}, {option: 'Стулья', value: false}, {option: 'Пуфы', value: false}, {option: 'Столы', value: false}, {option: 'Кровати', value: false}, {option: 'Аксессуары', value: false}, {option: 'Тумбы', value: false}]
+    - var footerMenu = [{item: 'О нас', subitems: ['О компании', 'Блог']}, {item: 'Услуги', subitems: ['Доставка', 'Рассрочка и кредит', 'Сборка и установка']}, {item: 'Связь с нами', subitems: ['Обратная связь', 'Контакты']}, {item: 'Сотрудничество', subitems: ['Поставщикам', 'Оптовикам', 'Карьера']}]
+    - var shareIcons = ['icon-facebook', 'icon-vk', 'icon-instagram']
+    header.header
+      .header__top
+        .container.header__row
+          .region.header__region Ваш регион:
+            .select.select--simple.region__select
+              select#region.js-select
+                each item in regionList
+                  option= item
+          a.link-phone.header__phone(href="#")
+            +svg("icon-phone", "link-phone__icon")
+            | +7 (495) 885-45-47
+          nav.secondary-nav.header__secondary-nav
+            ul.secondary-nav__list
+              each item in secondaryMenu
+                li.secondary-nav__item
+                  a.secondary-nav__link(href="#")= item
+      .header__center
+        .container.header__row
+          a.logo.header__logo(href="/")
+            img(src="images/logo.svg" alt="SitDownPls")
+          nav.main-nav.header__main-nav
+            .btn-menu.main-nav__btn.visib-sm.js-open
+              .btn-menu__line
+            .main-nav__over.js-menu
+              ul.main-nav__list
+                each item in mainMenu
+                  li.main-nav__item
+                    a.main-nav__link(href="#")= item
+              .secondary-nav.visib-xxs
+                ul.secondary-nav__list
+                  each item in secondaryMenu
+                    li.secondary-nav__item
+                      a.secondary-nav__link(href="#")= item
+              +svg("icon-elephant", "main-nav__icon visib-sm")
+      .header__bottom
+        .container.header__row
+          form.form-search.header__search(action="POST")
+            .form-search__control
+              +svg("icon-search", "form-search__icon")
+              input.input.input--lg.input--right.form-search__input(type="text" placeholder="Я хочу купить...")
+              button.btn-arrow.btn-arrow--no-hover.form-search__btn
+                span.btn-arrow__icon
+            .select.select--left.form-search__select
+              select#categories.js-select
+                each categorie in categories
+                  if !categorie.value
+                    option(value="")= categorie.option
+                  option= categorie.option
+          .header__icons
+            a.link-icon.link-icon--login(href="#")
+              +svg("icon-user", "link-icon__icon")
+            a.link-icon.link-icon--cart(href="#")
+              +svg("icon-cart", "link-icon__icon link-icon__icon--lg")
+              span.link-icon__count 0
+
+    block content
+    footer.footer
+      .container.footer__row
+        .footer__col.footer__col--left
+          a.logo.footer__logo(href="/")
+            img(src="images/logo.svg" alt="SitDownPls")
+          ul.share
+            each icon in shareIcons
+              li.share__item
+                a.share__link(href="#")
+                  +svg("" +icon, "share__icon")
+        nav.footer-nav.footer__col.footer__col--right
+          ul.footer-nav__list
+            each item in footerMenu
+              li.footer-nav__item
+                a.footer-nav__link(href="#")= item.item
+                if item.subitems
+                  ul.footer-nav__sub-list
+                    each subItem in item.subitems
+                      li.footer-nav__sub-item
+                        a.footer-nav__sub-link(href="#")= subItem
+      .footer__txt
+        .container
+          p SDP&copy;   2011-2021
+    script(src="resources/fancybox.umd.js")
+    script(src="js/app.js")

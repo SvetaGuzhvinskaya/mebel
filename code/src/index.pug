@@ -1,0 +1,167 @@
+
+extends pug/base
+
+block content
+  - var topSliders = [{title: 'Скидка 15% на первую покупку', classBg: 'slider-hero__item--slide01', btn: 'Получить!'}, {title: '1000+ аксессуаров для дома', classBg: 'slider-hero__item--slide02', btn: 'Подробнее'}, {title: 'Коллекция стильного и яркого текстиля', classBg: 'slider-hero__item--slide03', classTitle: 'slider-hero__title--white', btn: 'Подробнее'}]
+  - var specSliders = [{sale: '- 9 000', imgSrc: 'images/slide-spec01.jpg', imgSrcGraf: '', title: 'Кресло велюровое', serial: '“X-24”', price: '15 990 руб', discount: '24 990 руб'}, {sale: '- 10 000', imgSrc: 'images/slide-spec02.jpg', imgSrcGraf: 'images/slide-spec02-graf.png', title: 'Диван тканевый', serial: '“Z-44”', price: '22 990 руб', discount: '32 990 руб'}, {sale: '- 600', imgSrc: 'images/slide-spec03.jpg', imgSrcGraf: '', title: 'Будильник', serial: '“Quartz-23”', price: '1 290 руб', discount: '1 890 руб'}, {sale: '- 300', imgSrc: 'images/slide-spec04.jpg', imgSrcGraf: '', title: 'Мини-скульптура', serial: '“Oh my deer”', price: '690 руб', discount: '990 руб'}, {sale: '- 10 000', imgSrc: 'images/slide-spec05.jpg', imgSrcGraf: 'images/slide-spec05-graf.png', title: 'Диван вел-флок', serial: '“Z-85”', price: '22 990 руб', discount: '32 990 руб'}, {sale: '- 700', imgSrc: 'images/slide-spec06.jpg', imgSrcGraf: '', title: 'Термометр +', serial: 'гидрометр “H-18”', price: '1 390 руб', discount: '2 090 руб'}]
+  - var products = [{reting: '5,0', imgSrc: 'images/prod01.jpg', title: 'Диван кожаный', serial: '“R-94”', price: '94 990 руб'}, {reting: '4,9', imgSrc: 'images/prod02.jpg', title: 'Диван апартековый', serial: '“T-75”', price: '69 990 руб'}, {reting: '4,8', imgSrc: 'images/prod03.jpg', title: 'Диван тканевый', serial: '“D-31”', price: '28 490 руб'}, {reting: '4,8', imgSrc: 'images/prod04.jpg', title: 'Диван велюровый', serial: '“Y-68”', price: '22 990 руб'}, {reting: '4,8', imgSrc: 'images/prod05.jpg', title: 'Диван из шинила', serial: '“W-95”', price: '22 990 руб'}, {reting: '4,8', imgSrc: 'images/prod06.jpg', title: 'Диван флоковый', serial: '“G-41”', price: '17 990 руб'}, {reting: '4,8', imgSrc: 'images/prod07.jpg', title: 'Диван шиниловый', serial: '“V-43”', price: '19 990 руб', hidden: 'visib-lg'}, {reting: '4,7', imgSrc: 'images/prod08.jpg', title: 'Диван велюровый', serial: '“S-99”', price: '19 990 руб', hidden: 'visib-lg'}]
+  - var usefulSliders = [{imgSrc: 'images/useful01.jpg', description: 'И нет сомнений, что сделанные на базе интернет-аналитики выводы представляют собой не что иное?'}, {imgSrc: 'images/useful02.jpg', description: 'Как принято считать, некоторые особенности приносят несомненную пользу обществу?'}, {imgSrc: 'images/useful03.jpg', description: 'Ясность нашей позиции очевидна: укрепление и развитие внутренней структуры?'}, {imgSrc: 'images/useful04.jpg', description: 'Прежде всего, консультация с широким активом однозначно фиксирует необходимость распределения?'}, {imgSrc: 'images/useful05.jpg', description: 'Как принято считать, некоторые особенности приносят несомненную пользу обществу?'}]
+  main.main
+    section.section.section-hero.slider-hero.js-slider-hero
+      h1.hidden SitDownPls
+      .swiper-wrapper.slider-hero__list
+        each topSlider in topSliders
+          .swiper-slide.slider-hero__item(class="" +topSlider.classBg)
+            .container.slider-hero__entry
+              h2(class=`slider-hero__title ${topSlider.classTitle ? topSlider.classTitle : ''}`)= topSlider.title
+              .slider-hero__btn
+                a.btn(href="#")= topSlider.btn
+      .swiper-pagination.slider-hero__pagination
+    section.section.section-special
+      .container
+        h2.title.section-special__col Специальные предложения
+        .slider.slider-special.js-slider-special
+          .slider__nav
+            button.special-button-prev.swiper-button-prev.btn-arrow.btn-arrow--prev
+              span.btn-arrow__icon
+            button.special-button-next.swiper-button-next.btn-arrow.btn-arrow--next
+              span.btn-arrow__icon
+          .swiper-wrapper.slider-special__list
+            each specSlider in specSliders
+              .post-product.swiper-slide.slider-special__item
+                .post-product__sale= specSlider.sale
+                .post-product__img
+                  img.post-product__img-img(src="" +specSlider.imgSrc alt="" +specSlider.title)
+                if specSlider.imgSrcGraf
+                  img.post-product__img-graf(src="" +specSlider.imgSrcGraf alt="Диван схема")
+                h3.post-product__title= specSlider.title
+                  span.post-product__title-serial= specSlider.serial
+                .post-product__price
+                  .post-product__price-price= specSlider.price
+                  .post-product__price-discount= specSlider.discount
+                .post-product__btn
+                  a.btn.btn--outline.btn--sm(href="#") Купить
+    section.section.section-products
+      #home-products.container
+        h2.title Высокий рейтинг
+        .section-products__grid
+          each product in products
+            .post-product.post-product--sm(class=`${product.hidden ? product.hidden : ''}`)
+              .reting.post-product__reting
+                +svg("icon-star", "reting-icon")
+                span.reting-txt= product.reting
+              .post-product__img.post-product__img--sm
+                img.post-product__img-img(src="" +product.imgSrc alt="" +product.title)
+              h3.post-product__title.post-product__title--sm= product.title
+                span.post-product__title-serial= product.serial
+              .post-product__price.post-product__price--sm= product.price
+              .post-product__btn
+                a.btn.btn--outline.btn--xs(href="#") Купить
+        .center
+          button.btn.btn--lg.js-btn-more Смотреть больше товаров
+          #loading-div
+    section.section.section-banner
+      .container.section-banner__row
+        .section-banner__entry
+          h2.section-banner__title Оксфорд 1950
+          p.section-banner__description Новая коллекция изысканных кресел
+          a.btn.section-banner__btn(href="#") Ознакомиться
+    section.section.section-top
+      .container
+        h2.title Топ категории
+        .section-top__grid
+          .post-cat.post-cat--lg.section-top__col
+            .post-cat__tags.post-cat__tags--lg
+              a.post-cat__tags-link.post-cat__tags-link--lg(href="#") Прямые
+              a.post-cat__tags-link.post-cat__tags-link--lg(href="#") Угловые
+              a.post-cat__tags-link.post-cat__tags-link--lg(href="#") Модульные
+            h3.post-cat__title.post-cat__title--lg Диваны
+              a.btn-arrow.btn-arrow--md.btn-arrow--icon.post-cat__btn.visib-xs(href="#")
+                span.btn-arrow__icon
+            .post-cat__bg.post-cat__bg--lg.post-cat__bg--sofa
+            a.btn-arrow.btn-arrow--md.btn-arrow--icon.hidden-xs(href="#")
+              span.btn-arrow__txt В каталог
+              span.btn-arrow__icon
+          .post-cat.section-top__col
+            .post-cat__tags
+              a.post-cat__tags-link(href="#") Мягкие
+              a.post-cat__tags-link(href="#") Кресла-кровати
+            h3.post-cat__title Кресла
+              a.btn-arrow.btn-arrow--md.btn-arrow--icon.post-cat__btn.visib-xs(href="#")
+                span.btn-arrow__icon
+            .post-cat__bg.post-cat__bg--lg.post-cat__bg--armchair
+            a.btn-arrow.btn-arrow--md.btn-arrow--icon.hidden-xs(href="#")
+              span.btn-arrow__txt В каталог
+              span.btn-arrow__icon
+          .post-cat.section-top__col
+            .post-cat__tags
+              a.post-cat__tags-link(href="#") Односпальные
+              a.post-cat__tags-link(href="#") Двуспальные
+            h3.post-cat__title Кровати
+              a.btn-arrow.btn-arrow--md.btn-arrow--icon.post-cat__btn.visib-xs(href="#")
+                span.btn-arrow__icon
+            .post-cat__bg.post-cat__bg--bed
+            a.btn-arrow.btn-arrow--md.btn-arrow--icon.hidden-xs(href="#")
+              span.btn-arrow__txt В каталог
+              span.btn-arrow__icon
+          .post-cat.section-top__col
+            .post-cat__tags
+              a.post-cat__tags-link(href="#") Тумбы
+              a.post-cat__tags-link(href="#") Комоды
+            h3.post-cat__title Тумбы и комоды
+              a.btn-arrow.btn-arrow--md.btn-arrow--icon.post-cat__btn.visib-xs(href="#")
+                span.btn-arrow__icon
+            .post-cat__bg.post-cat__bg--dresser
+            a.btn-arrow.btn-arrow--md.btn-arrow--icon.hidden-xs(href="#")
+              span.btn-arrow__txt В каталог
+              span.btn-arrow__icon
+          .post-cat.section-top__col
+            .post-cat__tags
+              a.post-cat__tags-link(href="#") Деревянные
+              a.post-cat__tags-link(href="#") Металлокаркас
+            h3.post-cat__title Стулья
+              a.btn-arrow.btn-arrow--md.btn-arrow--icon.post-cat__btn.visib-xs(href="#")
+                span.btn-arrow__icon
+            .post-cat__bg.post-cat__bg--chair
+            a.btn-arrow.btn-arrow--md.btn-arrow--icon.hidden-xs(href="#")
+              span.btn-arrow__txt В каталог
+              span.btn-arrow__icon
+    section.section.section-useful
+      .container
+        h2.title.section-useful__col Полезное
+        .slider.slider-useful.js-slider-useful
+          .slider__nav
+            button.useful-button-prev.swiper-button-prev.btn-arrow.btn-arrow--prev
+              span.btn-arrow__icon
+            button.useful-button-next.swiper-button-next.btn-arrow.btn-arrow--next
+              span.btn-arrow__icon
+          .swiper-wrapper.slider-useful__list
+            each usefulSlider in usefulSliders
+              .post-useful.swiper-slide.slider-useful__item
+                img.post-useful__img(src="" +usefulSlider.imgSrc alt="" +usefulSlider.description)
+                p.post-useful__description= usefulSlider.description
+                .post-useful__btn
+                  a.btn.btn--outline.btn--sm(href="#") Читать
+    section.section.section-feedback
+      .container.section-feedback__grid
+        .section-feedback__col
+          h2.title.section-feedback__title Мы всегда вам рады!
+          p.description.section-feedback__description Безусловно, новая модель организационной деятельности в значительной степени обусловливает важность распределения внутренних резервов и ресурсов.&nbsp;
+            span.tooltip.description__tooltip.js-tooltip(data-tippy-content="Реплицированные с зарубежных источников, исследования формируют")
+              +svg("icon-tooltip", "tooltip__icon")
+          form#feedbackForm(action="POST")
+            .form-control
+              input#nameInput.input(type="text" placeholder="Как вас зовут?" name="name" required)
+            .form-control
+              input#phoneInput.input(type="tel" placeholder="Ваш телефон" name="tel" required)
+            .form-control
+              input#emailInput.input(type="email" placeholder="Ваш e-mail" name="email" required)
+            .form-control.form-control--sm
+              button.btn.btn--md Отправить
+            label.checkbox(for="nineteenth-сentury")
+              input.checkbox__input(type="checkbox" name="nineteenth-сentury" id="nineteenth-сentury" value="yes")
+              span.checkbox__icon
+                +svg("icon-checked", "checkbox__icon-svg")
+              | Принимаю
+              |
+              a.link(href="#") пользовательское соглашение

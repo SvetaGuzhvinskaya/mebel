@@ -1,0 +1,96 @@
+
+extends pug/base
+
+block content
+  - var products = [{reting: '5,0', imgSrc: 'images/prod01.jpg', title: 'Диван кожаный', serial: '“R-94”', price: '94 990 руб'}, {reting: '4,8', imgSrc: 'images/prod04.jpg', title: 'Диван велюровый', serial: '“Y-68”', price: '22 990 руб'}, {reting: '4,8', imgSrc: 'images/prod07.jpg', title: 'Диван шиниловый', serial: '“V-43”', price: '19 990 руб'}, {reting: '4,9', imgSrc: 'images/prod02.jpg', title: 'Диван апартековый', serial: '“T-75”', price: '69 990 руб'}, {reting: '4,8', imgSrc: 'images/prod05.jpg', title: 'Диван из шинила', serial: '“W-95”', price: '22 990 руб'}, {reting: '4,7', imgSrc: 'images/prod08.jpg', title: 'Диван велюровый', serial: '“S-99”', price: '19 990 руб'}, {reting: '4,8', imgSrc: 'images/prod03.jpg', title: 'Диван тканевый', serial: '“D-31”', price: '28 490 руб'}, {reting: '4,8', imgSrc: 'images/prod06.jpg', title: 'Диван флоковый', serial: '“G-41”', price: '17 990 руб'}, {reting: '4,7', imgSrc: 'images/prod09.jpg', title: 'Диван из кожзама', serial: '“F-85”', price: '26 990 руб'}, {reting: '4,6', imgSrc: 'images/prod10.jpg', title: 'Диван флоковый', serial: '“H-64”', price: '25 990 руб'}, {reting: '4,6', imgSrc: 'images/prod13.jpg', title: 'Диван из шинила', serial: '“С-42”', price: '18 990 руб'}, {reting: '4,5', imgSrc: 'images/prod16.jpg', title: 'Диван велюровый', serial: '“R-85”', price: '34 990 руб'}, {reting: '4,6', imgSrc: 'images/prod11.jpg', title: 'Диван флоковый', serial: '“H-58”', price: '23 990 руб'}, {reting: '4,6', imgSrc: 'images/prod14.jpg', title: 'Диван велюровый', serial: '“U-58”', price: '21 990 руб'}, {reting: '4,5', imgSrc: 'images/prod17.jpg', title: 'Диван велюровый', serial: '“S-44”', price: '19 990 руб'}, {reting: '4,6', imgSrc: 'images/prod12.jpg', title: 'Диван из кожзама', serial: '“R-43”', price: '33 990 руб'}, {reting: '4,5', imgSrc: 'images/prod15.jpg', title: 'Диван флоковый', serial: '“F-41”', price: '17 990 руб'}, {reting: '4,4', imgSrc: 'images/prod18.jpg', title: 'Диван из шинила', serial: '“С-80”', price: '20 990 руб'}]
+  - var categories = [{id: 'sofa', name: 'Диваны'}, {id: 'armchairs', name: 'Кресла'}, {id: 'puffs', name: 'Пуфы'}, {id: 'beds', name: 'Кровати'}, {id: 'cabinets', name: 'Тумбы'}, {id: 'dressers', name: 'Комоды'}, {id: 'chairs', name: 'Стулья'}, {id: 'tables', name: 'Столы'}, {id: 'fignay', name: 'Аксессуары'}]
+  - var sales = [{id: 'more', name: 'Более 5 000'}, {id: 'less', name: 'Менее 5 000'}, {id: 'pofig', name: 'Не важно'}]
+  - var colors = [{id: 'brown', name: 'Коричневый'}, {id: 'black', name: 'Черный'}, {id: 'beige', name: 'Бежевый'}, {id: 'grey', name: 'Серый'}, {id: 'white', name: 'Белый'}, {id: 'blue', name: 'Синий'}, {id: 'orange', name: 'Оранжевый'}, {id: 'yellow', name: 'Желтый'}, {id: 'green', name: 'Зеленый'}]
+  main.main.catalog-page
+    .container
+      ul.breadcrumb-list
+        li.breadcrumb-list__item
+          a.breadcrumb-list__link(href="#") Главная
+        li.breadcrumb-list__item
+          a.breadcrumb-list__link(href="#") Каталог
+        li.breadcrumb-list__item
+          a.breadcrumb-list__link(href="#") Диваны
+        li.breadcrumb-list__item Прямые диваны
+      h1.title.catalog-page__title.visib-md Каталог
+      .catalog-page__grid
+        aside.aside
+          h2.title.title--sm.aside__title.hidden-lg Фильтровать по:
+          h2.title.title--sm.aside__title.visib-md Фильтры:
+          .filter
+            .widget
+              h3.widget__title Категория
+              .widget__entry
+                ul.widget__list
+                  each category in categories
+                    li.widget__list-item
+                      label.checkbox.checkbox--lg(for="" + category.id)
+                        input.checkbox__input(type="checkbox" name="" + category.id id="" + category.id value="yes")
+                        span.checkbox__icon.checkbox__icon--lg
+                          +svg("icon-checked", "checkbox__icon-svg")
+                        =category.name
+                a.link.link--mb.visib-md(href="#") + ещё 12
+            .widget
+              h3.widget__title Цена
+              .widget__entry
+                .price-range
+                  .price-range__row
+                    .price-range__col
+                      label.price-range__label от
+                      input#amountStart.price-range__input(type="number" min="0" max="100000" placeholder="500")
+                    .price-range__col
+                      label.price-range__label до
+                      input#amountEnd.price-range__input(type="number" min="0" max="100000" placeholder="500")
+                  #slider-range
+            .widget
+              h3.widget__title Скидка
+              .widget__entry
+                ul.widget__list
+                  each sale in sales
+                    li.widget__list-item
+                      label.checkbox.checkbox--lg(for="" + sale.id)
+                        input.checkbox__input(type="checkbox" name="" + sale.id id="" + sale.id value="yes")
+                        span.checkbox__icon.checkbox__icon--lg
+                          +svg("icon-checked", "checkbox__icon-svg")
+                        =sale.name
+            .widget
+              h3.widget__title Цвет
+              .widget__entry
+                ul.widget__list
+                  each color in colors
+                    li.widget__list-item
+                      label.checkbox.checkbox--lg(for="" + color.id)
+                        input.checkbox__input(type="checkbox" name="" + color.id id="" + color.id value="yes")
+                        span.checkbox__icon.checkbox__icon--lg
+                          +svg("icon-checked", "checkbox__icon-svg")
+                        = color.name
+                a.link.link--mb.visib-md(href="#") + ещё 7
+          .banner.hidden-lg
+            .banner__entry
+              h2.banner__title Оксфорд 1950
+              p.banner__description Новая коллекция изысканных кресел
+              a.btn-arrow.btn-arrow--md.btn-arrow--icon.hidden-xs(href="#")
+                span.btn-arrow__txt В каталог
+                span.btn-arrow__icon
+        section.catalog-products
+          h2.title.catalog-page__title.hidden-lg Каталог
+          .swiper.catalog-slider.js-slider-catalog
+            .swiper-wrapper.catalog-slider__list
+              each product in products
+                .swiper-slide.catalog-slider__item.post-product.post-product--sm
+                  .reting.post-product__reting
+                    +svg("icon-star", "reting-icon")
+                    span.reting-txt= product.reting
+                  .post-product__img.post-product__img--sm
+                    img.post-product__img-img(src="" +product.imgSrc alt="" +product.title)
+                  h3.post-product__title.post-product__title--sm= product.title
+                    span.post-product__title-serial= product.serial
+                  .post-product__price.post-product__price--sm= product.price
+                  .post-product__btn
+                    a.btn.btn--outline.btn--xs(href="#") Купить
+          .center
+            .swiper-pagination.pagination.catalog-slider-pagination

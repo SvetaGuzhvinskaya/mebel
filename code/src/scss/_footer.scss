@@ -1,0 +1,206 @@
+.footer {
+  background-color: $color-grey-ea;
+
+  &__row {
+    @include flex(row, normal, space-between);
+    padding-top: 24px;
+    padding-bottom: 22px;
+  }
+
+  &__col {
+    &--left {
+      margin-right: 32px;
+      width: calc(187px + 19.5% - 32px);
+    }
+
+    &--right {
+      width: calc(100% - 187px - 19.5%);
+    }
+  }
+
+  &__logo {
+    margin-bottom: 28px;
+  }
+
+  &__txt {
+    padding: 5px 0;
+    background-color: $color-grey-f7;
+    font-size: 14px;
+    line-height: 19px;
+    text-align: center;
+    color: $color-grey-99;
+  }
+}
+
+.share {
+  @include flex(row, center, left);
+  flex-wrap: wrap;
+
+  &__item {
+    &:not(:last-child) {
+      margin-right: 20px;
+    }
+  }
+
+  &__link {
+    position: relative;
+    display: block;
+    margin: 0 -3px;
+    padding: 3px;
+    fill: $color-grey-99;
+    @include transition;
+
+    &:focus {
+      background-color: $color-primary-hover;
+      fill: $color-white;
+    }
+
+    &:hover {
+      background-color: transparent;
+      fill: $color-primary;
+    }
+
+    &:active {
+      background-color: transparent;
+      fill: $color-primary-active;
+    }
+  }
+
+  &__icon {
+    width: 30px;
+    height: 30px;
+    @include transition;
+  }
+}
+
+.footer-nav {
+  &__list {
+    @include grid(repeat(4, 1fr), auto, normal, 0);
+    margin-bottom: -20px;
+    font-size: 16px;
+    line-height: 23px;
+  }
+
+  &__item {
+    margin-bottom: 20px;
+    &:not(:last-child) {
+      margin-right: 20px;
+    }
+  }
+
+  &__link {
+    color: $color-black;
+    &:focus {
+      color: $color-primary-focus;
+    }
+    &:hover {
+      color: $color-primary-hover;
+    }
+    &:active {
+      color: $color-primary-active;
+    }
+  }
+
+  &__sub-list {
+    padding: 5px 0 0;
+    font-size: 14px;
+    line-height: 14px;
+  }
+
+  &__sub-item {
+    &:not(:last-child) {
+      margin-bottom: 10px;
+    }
+  }
+
+  &__sub-link {
+    color: $color-grey-99;
+    &:focus {
+      color: $color-primary-focus;
+    }
+    &:hover {
+      color: $color-primary-hover;
+    }
+    &:active {
+      color: $color-primary-active;
+    }
+  }
+}
+
+@media (max-width: $lg) {
+  .footer {
+    &__col {
+      &--left {
+        margin-right: 20px;
+        width: 200px;
+      }
+      &--right {
+        width: calc(100% - 220px);
+      }
+    }
+  }
+}
+
+@media (max-width: $md) {}
+
+@media (max-width: $sm) {
+  .footer {
+    &__row {
+      display: block;
+      padding-top: 22px;
+    }
+
+    &__col {
+      &--left {
+        @include flex(row, center, space-between);
+        margin-right: 0;
+        margin-bottom: 20px;
+        width: 100%;
+      }
+
+      &--right {
+        width: 100%;
+      }
+    }
+
+    &__logo {
+      margin-bottom: 0;
+    }
+  }
+}
+
+@media (max-width: $xs) {}
+
+@media (max-width: $xxs) {
+  .footer {
+    &__row {
+      padding-top: 24px;
+    }
+
+    &__col {
+      &--left {
+        flex-direction: column;
+        margin-bottom: 22px;
+      }
+    }
+
+    &__logo {
+      margin-bottom: 20px;
+    }
+  }
+
+  .footer-nav {
+    max-width: 320px;
+    margin: 0 auto;
+
+    &__list {
+      @include grid(repeat(2, 1fr), auto, normal, 22px 10px);
+    }
+
+    &__item {
+      &:not(:nth-child(odd)) {
+        margin-right: 0;
+      }
+    }
+  }
+}

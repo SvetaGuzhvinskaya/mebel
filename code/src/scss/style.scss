@@ -1,0 +1,68 @@
+@import "mixins";
+@import "variables";
+@import "components";
+@import "fonts";
+@import "normalize";
+@import "form";
+@import "base";
+@import "header";
+@import "footer";
+@import "main";
+@import "pages/home";
+@import "pages/catalog";
+@import "pages/product";
+
+.visib-md,
+.visib-sm,
+.visib-xs,
+.visib-xxs {
+  display: none;
+}
+
+.hidden {
+  display: none;
+}
+
+@media (max-width: $lg) {
+  .visib-lg {
+    display: none;
+  }
+
+  .visib-md {
+    display: block;
+  }
+
+  .hidden-lg {
+    display: none;
+  }
+}
+
+@media (max-width: $md) {
+  .hidden-md {
+    display: none;
+  }
+}
+
+@media (max-width: $sm) {
+  .visib-sm {
+    display: block;
+  }
+}
+
+@media (max-width: $xs) {
+  .visib-xs {
+    display: block;
+  }
+
+  .hidden-xs {
+    display: none;
+  }
+}
+
+@media (max-width: $xxs) {
+  .visib-xxs {
+    display: block;
+  }
+}
+
+

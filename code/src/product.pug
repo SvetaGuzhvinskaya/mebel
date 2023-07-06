@@ -1,0 +1,139 @@
+
+extends pug/base
+
+block content
+  - var products = [{reting: '4,5', imgSrc: 'images/prod16.jpg', title: 'Диван велюровый', serial: '“R-85”', price: '34 990 руб'}, {reting: '4,6', imgSrc: 'images/prod11.jpg', title: 'Диван флоковый', serial: '“H-58”', price: '23 990 руб'}, {reting: '4,5', imgSrc: 'images/prod17.jpg', title: 'Диван велюровый', serial: '“S-44”', price: '19 990 руб'}, {reting: '4,8', imgSrc: 'images/prod07.jpg', title: 'Диван шиниловый', serial: '“V-43”', price: '19 990 руб'}, {reting: '4,5', imgSrc: 'images/prod16.jpg', title: 'Диван велюровый', serial: '“R-85”', price: '34 990 руб'}, {reting: '4,6', imgSrc: 'images/prod11.jpg', title: 'Диван флоковый', serial: '“H-58”', price: '23 990 руб'}, {reting: '4,5', imgSrc: 'images/prod17.jpg', title: 'Диван велюровый', serial: '“S-44”', price: '19 990 руб'}, {reting: '4,8', imgSrc: 'images/prod07.jpg', title: 'Диван шиниловый', serial: '“V-43”', price: '19 990 руб'}]
+  -var specifications = [{name: 'Гарантия', info: '18 месяцев'}, {name: 'Артикул', info: 'AAA41269004'}, {name: 'Длина', info: '163 см'}, {name: 'Высота', info: '90 см'}, {name: 'Глубина', info: '108 см'}, {name: 'Спальное место', info: '200 см х 125 см'}, {name: 'Высота посадки', info: '45 см'}, {name: 'Механизм', info: 'Опорный'}, {name: 'Тип обивки', info: 'Рогожка'}, {name: 'Цвет', info: 'Синий'}, {name: 'Наполнитель', info: 'Независимый пружинный блок'}, {name: 'Материал каркаса', info: 'Металл. рама с дерев. латами'}, {name: 'Количество мест', info: 'Двухместные'}, {name: 'Категория', info: 'Прямые тканевые диваны'}, {name: 'Возврат', info: 'Условия'}]
+  main.main.product-page
+    .container
+      ul.breadcrumb-list.hidden-xs
+        li.breadcrumb-list__item
+          a.breadcrumb-list__link(href="#") Главная
+        li.breadcrumb-list__item
+          a.breadcrumb-list__link(href="#") Каталог
+        li.breadcrumb-list__item
+          a.breadcrumb-list__link(href="#") Диваны
+        li.breadcrumb-list__item
+          a.breadcrumb-list__link(href="#") Прямые диваны
+        li.breadcrumb-list__item D-31
+      .product
+        .product__grid
+          .product__col
+            .product__imgs
+              .product__imgs-main
+                a(href="#" data-fancybox="" data-src="#imgs-modal")
+                  img.product__imgs-main-img(src="images/prod-main01.jpg" alt="")
+              .product__imgs-thumb
+                .product__imgs-thumb-item
+                  img.product__imgs-thumb-img(src="images/prod-main02.png" alt="")
+                .product__imgs-thumb-item
+                  img.product__imgs-thumb-img(src="images/prod-main03.png" alt="")
+                .product__imgs-thumb-item
+                  img.product__imgs-thumb-img(src="images/prod-main04.png" alt="")
+                .product__imgs-thumb-item
+                  img.product__imgs-thumb-img(src="images/prod-main05.png" alt="")
+          .product__col.product__col--head
+            .product__head
+              .reting.reting--lg.product__reting
+                +svg("icon-star", "reting-icon reting-icon--lg")
+                span.reting-txt 4,8
+              h1.product__title Диван тканевый прямой “D-31”
+              .product__info Мини 120 см без ящика Stark синий (Рогожка)
+              .product__price 28 490 руб
+              .product__btns
+                button.btn.btn--xlg(data-fancybox data-src="#buy-modal") Купить в один клик
+                button.btn.btn--md.btn--link + Добавить в корзину
+        .product__grid
+          .product__col
+            .product__entry
+              h2.product__sub-title Опорный механизм
+              p.product__description Опорный механизм напоминает пантограф, к которому добавили дополнительную секцию. У опорного дивана сиденье «выпрыгивает» вперёд и вытаскивает вторую часть спального места. Заключительный штрих — опустить спинку.
+              p.product__description Этот механизм не портит пол и не боится ковров. Требуется чуть больше силы, чтобы разложить диван, но подросток справится.
+            .product__second-imgs
+              .product__second-imgs-col
+                img.product__second-imgs-img(src="images/prod-main-garf01.jpg" alt="")
+              .product__second-imgs-col
+                img.product__second-imgs-img(src="images/prod-main-garf02.jpg" alt="")
+          .product__col
+            ul.specification-list.product__list
+              each specification in specifications
+                li.specification-list__item
+                  .specification-list__name
+                    .specification-list__name-txt= specification.name
+                  .specification-list__info= specification.info
+    section.section.section-products
+      .container
+        h2.title.title--md.product-page__title Похожие товары
+        .slider.slider-products.js-slider-products
+          .slider__nav
+            .products-button-prev.swiper-button-prev.btn-arrow.btn-arrow--prev
+              span.btn-arrow__icon
+            .products-button-next.swiper-button-next.btn-arrow.btn-arrow--next
+              span.btn-arrow__icon
+          .swiper-wrapper.slider-products__list
+            each product in products
+              .swiper-slide.slider-products__item
+                .post-product.post-product--sm
+                  .reting.post-product__reting
+                    +svg("icon-star", "reting-icon")
+                    span.reting-txt= product.reting
+                  .post-product__img.post-product__img--sm
+                    img.post-product__img-img(src="" +product.imgSrc alt="" +product.title)
+                  h3.post-product__title.post-product__title--sm= product.title
+                    span.post-product__title-serial= product.serial
+                  .post-product__price.post-product__price--sm= product.price
+                  .post-product__btn
+                    a.btn.btn--outline.btn--xs(href="#") Купить
+  #imgs-modal.fancybox-content.fancybox-content--lg(style="display: none;")
+    .product.product--modal
+      .product__imgs.product__imgs--slider
+        .product__imgs-main.product__imgs-main--slider.swiper.js-slider-prod-main
+          .swiper-wrapper
+            .swiper-slide
+              img.product__imgs-main-img(src="images/prod-main01.jpg" alt="")
+            .swiper-slide
+              img.product__imgs-main-img(src="images/prod-main02-lg.jpg" alt="")
+            .swiper-slide
+              img.product__imgs-main-img(src="images/prod-main03-lg.jpg" alt="")
+            .swiper-slide
+              img.product__imgs-main-img(src="images/prod-main04-lg.jpg" alt="")
+            .swiper-slide
+              img.product__imgs-main-img(src="images/prod-main05-lg.jpg" alt="")
+        .product__imgs-thumb.product__imgs-thumb--slider.swiper.js-slider-prod-thumbs
+          .swiper-wrapper.product__slider-wrapper
+            .product__imgs-thumb-item.swiper-slide(style="display: none;")
+              img.product__imgs-thumb-img.product__imgs-thumb-img--slider(src="images/prod-main01.jpg" alt="")
+            .product__imgs-thumb-item.swiper-slide
+              img.product__imgs-thumb-img.product__imgs-thumb-img--slider(src="images/prod-main02.png" alt="")
+            .product__imgs-thumb-item.swiper-slide
+              img.product__imgs-thumb-img.product__imgs-thumb-img--slider(src="images/prod-main03.png" alt="")
+            .product__imgs-thumb-item.swiper-slide
+              img.product__imgs-thumb-img.product__imgs-thumb-img--slider(src="images/prod-main04.png" alt="")
+            .product__imgs-thumb-item.swiper-slide
+              img.product__imgs-thumb-img.product__imgs-thumb-img--slider(src="images/prod-main05.png" alt="")
+          .product__imgs-thumb-nav
+            button.swiper-button-prev.btn-arrow.btn-arrow--prev.product__imgs-thumb-nav-item
+              span.btn-arrow__icon
+            button.swiper-button-next.btn-arrow.btn-arrow--next.product__imgs-thumb-nav-item
+              span.btn-arrow__icon
+  #buy-modal.fancybox(style="display:none;")
+    h2.title.fancybox__title Купить в один клик
+    p.description.fancybox__description Чтобы оформить заказ — заполните формы ниже и наш менеджер свяжется с вами в течении часа.
+    form#buyFormProd(action="POST")
+      .form-control.fancybox__form-control
+        input#nameInputProd.input(type="text" placeholder="Как вас зовут?" name="name" required)
+      .form-control.fancybox__form-control
+        input#phoneInputProd.input(type="tel" placeholder="Ваш телефон" name="tel" required)
+      .form-control.form-control--sm.fancybox__form-control
+        button.btn.btn--md Отправить
+      label.checkbox(for="agreement")
+        input.checkbox__input(type="checkbox" name="agreement" id="agreement" value="yes")
+        span.checkbox__icon
+          +svg("icon-checked", "checkbox__icon-svg")
+        | Принимаю
+        |
+        a.link(href="#") пользовательское соглашение
+  #thank-modal(style="display:none;")
+    .thank-entry
+      +svg("icon-elephant", "thank-entry__icon-svg")
+      h2.title.thank-entry__title Спасибо, мы вам перезвоним!
