@@ -8,6 +8,13 @@
 <li>fancybox.js</li>
 <li>nouislider.js</li>
 </ul>
+<h2>Страницы</h2>
+<ul>
+<li><a hfef="https://svetaguzhvinskaya.github.io/mebel/">Главная</a></li>
+<li><a hfef="https://svetaguzhvinskaya.github.io/mebel/catalog.html">Каталог</a></li>
+<li><a hfef="https://svetaguzhvinskaya.github.io/mebel/product.html">Страница товара</a></li>
+<li><a hfef="https://svetaguzhvinskaya.github.io/mebel/page.html">Текстовая страница</a></li>
+</ul>
 <h2>Требования к верстке</h2>
 <ul>
   <li>Семантичность - корректное использование тегов</li>
